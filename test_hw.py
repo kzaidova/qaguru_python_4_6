@@ -1,5 +1,6 @@
 from datetime import time
 
+
 def test_dark_theme():
     """
     Протестируйте правильность переключения темной темы на сайте
@@ -23,11 +24,11 @@ def test_dark_theme():
         is_dark_theme = False
     assert is_dark_theme is True
 
+
 def test_find_suitable_user():
     """
     Найдите нужного пользователя по условиям в списке пользователей
     """
-    suiable_users = None
     users = [
         {"name": "Oleg", "age": 32},
         {"name": "Sergey", "age": 24},
@@ -39,12 +40,14 @@ def test_find_suitable_user():
     suiable_user = [user for user in users if user["name"] == "Olga"][0]
     assert suiable_user == {"name": "Olga", "age": 45}
 
-
-    suiable_users = None
     suiable_users = [user for user in users if user["age"] < 20]
-    assert suiable_users == [{"name": "Stanislav", "age": 15},{"name": "Maria", "age": 18}]
+    assert suiable_users == [{"name": "Stanislav", "age": 15}, {"name": "Maria", "age": 18}]
 
 
+def refactor_name_function(func_name, *args):
+    a = f'{func_name.__name__.replace("_", " ").title()} [{", ".join(args)}]'
+    print(a)
+    return a
 
 
 def test_readable_function():
@@ -52,20 +55,18 @@ def test_readable_function():
     go_to_companyname_homepage(page_url="https://companyname.com")
     find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
 
+
 def open_browser(browser_name):
-    actual_result = None
+    actual_result = refactor_name_function(open_browser, browser_name)
     assert actual_result == "Open Browser [Chrome]"
 
+
 def go_to_companyname_homepage(page_url):
-    actual_result = None
+    actual_result = refactor_name_function(go_to_companyname_homepage, page_url)
     assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
 
+
 def find_registration_button_on_login_page(page_url, button_text):
-    actual_result = None
+    actual_result = refactor_name_function(find_registration_button_on_login_page, page_url, button_text)
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
-
-
-def refactor_name_function(func_name, *args):
-    return f'{func_name.__name__.replace("_", " ").title()} [{", ".join(args)}]'
-
 
